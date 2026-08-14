@@ -11,6 +11,96 @@ using namespace System;
 #define LEFT 'a'
 #define RIGHT 'd'
 
+//Pantalla de carga
+void dibujar_nave(int x, int y)
+{
+	Console::SetCursorPosition(x, y);
+	cout << "  +-+----.__       ";
+	Console::SetCursorPosition(x, y + 1);
+	cout << " __//||[ |_ `-._ ";
+	Console::SetCursorPosition(x, y + 2);
+	cout << " \\__\\`'|    `----\\";
+	Console::SetCursorPosition(x, y + 3);
+	cout << "  /_|---|___-------> ";
+	Console::SetCursorPosition(x, y + 4);
+	cout << " |__|___|_____.---'  ";
+}
+
+void pantalla_de_carga()
+{
+	for (int x = 0; x <= 64; x += 2)
+	{
+		Console::Clear();
+
+		Console::SetCursorPosition(2, 0);
+		cout << ".";
+		Console::SetCursorPosition(10, 1);
+		cout << "*";
+		Console::SetCursorPosition(18, 0);
+		cout << ".";
+		Console::SetCursorPosition(26, 1);
+		cout << "*";
+		Console::SetCursorPosition(35, 0);
+		cout << ".";
+		Console::SetCursorPosition(45, 1);
+		cout << "*";
+		Console::SetCursorPosition(55, 0);
+		cout << ".";
+		Console::SetCursorPosition(65, 1);
+		cout << "*";
+		Console::SetCursorPosition(75, 0);
+		cout << ".";
+
+		Console::SetCursorPosition(3, 16);
+		cout << ".";
+		Console::SetCursorPosition(12, 17);
+		cout << "*";
+		Console::SetCursorPosition(22, 18);
+		cout << ".";
+		Console::SetCursorPosition(32, 16);
+		cout << "*";
+		Console::SetCursorPosition(42, 17);
+		cout << ".";
+		Console::SetCursorPosition(52, 18);
+		cout << "*";
+		Console::SetCursorPosition(62, 16);
+		cout << ".";
+		Console::SetCursorPosition(72, 17);
+		cout << "*";
+
+		Console::SetCursorPosition(78, 2);
+		cout << "*";
+		Console::SetCursorPosition(0, 17);
+		cout << ".";
+		Console::SetCursorPosition(78, 18);
+		cout << ".";
+		Console::SetCursorPosition(1, 9);
+		cout << "*";
+
+		Console::SetCursorPosition(0, 3);
+		cout << "Preparando mision Artemis II...";
+
+		Console::SetCursorPosition(0, 5);
+		if (x < 64 * 0.3)
+		{
+			cout << "Verificando sistemas...";
+		}
+
+		else if (x < 64 * 0.7)
+		{
+			cout << "Calculando Trayectoria...";
+		}
+
+		else
+		{
+			cout << "Preparando rescate...";
+		}
+
+		dibujar_nave(x, 10);
+
+	}
+}
+
 //Personas
 void dibujar_persona(int x, int y)
 {
@@ -106,6 +196,29 @@ void desplazamiento_nave(int x, int y, char direccion, char tecla)
 	{
 		x = x - 1;
 		direccion = LEFT;
+	}
+}
+
+void meteroritos(int x, int y)
+{
+	if (y <= 0)
+	{
+		Console::SetCursorPosition(x, y);
+		cout << "  ";
+	}
+
+	y = y + 1;
+
+	if (y >= 30)
+	{
+		y = 0;
+		x = (rand() % 100) + 30;
+	}
+
+	if (y >= 0)
+	{
+		Console::SetCursorPosition(x, y);
+		cout << "()";
 	}
 }
 
